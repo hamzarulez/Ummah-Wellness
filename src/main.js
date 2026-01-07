@@ -262,13 +262,14 @@ function attachEventListeners() {
 }
 
 // Handle booking submission
-function handleBookingSubmit() {
+async function handleBookingSubmit() {
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const service = document.getElementById('service').value;
     const message = document.getElementById('message').value.trim();
+    const submitBtn = document.getElementById('submitBooking');
 
     // Validation
     if (!firstName || !lastName || !email || !phone || !service) {
@@ -283,44 +284,58 @@ function handleBookingSubmit() {
         return;
     }
 
-    // Compose email
-    const subject = encodeURIComponent(`Consultation Request from ${firstName} ${lastName}`);
-    const body = encodeURIComponent(
-        `New consultation request from Ummah Wellness website:
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
 
-Name: ${firstName} ${lastName}
-Email: ${email}
+    try {
+        // Initialize EmailJS
+        emailjs.init('nymybhdpwkOI_GSbE');
+
+        // Combine all form data into message for template compatibility
+        const fullMessage = `
 Phone: ${phone}
 Service: ${service}
 
 Message:
-${message || 'No message provided'}
+${message || 'No additional message provided'}
+        `.trim();
 
----
-This request was submitted via the Ummah Wellness website.`
-    );
+        // Send email via EmailJS
+        await emailjs.send('service_jr08wsi', 'template_aqkbrz8', {
+            name: `${firstName} ${lastName}`,
+            email: email,
+            message: fullMessage,
+            time: new Date().toLocaleString()
+        });
 
-    // Open email client
-    window.location.href = `mailto:ummahwellness1@gmail.com?subject=${subject}&body=${body}`;
+        // Show success modal
+        const modal = document.getElementById('successModal');
+        const modalMessage = document.getElementById('modalMessage');
 
-    // Show success modal
-    const modal = document.getElementById('successModal');
-    const modalMessage = document.getElementById('modalMessage');
+        modalMessage.innerHTML = `
+            Thank you, <strong>${firstName}</strong>! Your consultation request has been sent successfully.<br><br>
+            We'll get back to you at <strong>${email}</strong> as soon as possible.
+        `;
 
-    modalMessage.innerHTML = `
-        Thank you, <strong>${firstName}</strong>! Your email client should open with your request.<br><br>
-        If it doesn't open automatically, please email us directly at <strong>ummahwellness1@gmail.com</strong>
-    `;
+        modal.style.display = 'flex';
 
-    modal.style.display = 'flex';
+        // Reset form
+        document.getElementById('firstName').value = '';
+        document.getElementById('lastName').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('service').value = '';
+        document.getElementById('message').value = '';
 
-    // Reset form
-    document.getElementById('firstName').value = '';
-    document.getElementById('lastName').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('service').value = '';
-    document.getElementById('message').value = '';
+    } catch (error) {
+        console.error('EmailJS Error:', error);
+        alert('Sorry, there was an error sending your request. Please try again or email us directly at ummahwellness1@gmail.com');
+    } finally {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Request';
+    }
 }
 
 // Initialize the app

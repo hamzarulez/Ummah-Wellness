@@ -1,20 +1,5 @@
 import './style.css'
 
-// App state
-const state = {
-    selectedDate: null,
-    selectedTime: null,
-    currentMonth: new Date().getMonth(),
-    currentYear: new Date().getFullYear()
-};
-
-// Available time slots
-const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '2:00 PM', '3:00 PM', '4:00 PM'];
-
-// Month names
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'];
-
 // Render the entire app
 function renderApp() {
     const app = document.querySelector('#app');
@@ -24,12 +9,11 @@ function renderApp() {
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <i class="fas fa-hands-helping logo-icon"></i>
+                    <img src="/UW_Logo.png" alt="Ummah Wellness" class="logo-img">
                     <span class="logo-text">Ummah Wellness</span>
                 </div>
                 <div class="nav-links" id="navLinks">
                     <a href="#services">Services</a>
-                    <a href="#about">About</a>
                     <a href="#booking">Book Session</a>
                     <a href="#contact">Contact</a>
                 </div>
@@ -49,12 +33,17 @@ function renderApp() {
             <div class="shape shape-3"></div>
         </div>
         <div class="container">
-            <div class="hero-content">
-                <h1>Your Path to Inner Peace Begins Here</h1>
-                <p>Professional therapy services rooted in Islamic principles and modern psychological practices. Find healing, hope, and harmony.</p>
-                <div class="hero-buttons">
-                    <button class="cta-button" id="heroBookBtn">Schedule Consultation</button>
-                    <button class="secondary-button" id="learnMoreBtn">Learn More</button>
+            <div class="hero-wrapper">
+                <div class="hero-content">
+                    <h1>Your Path to Inner Peace Begins Here</h1>
+                    <p>Rooted in Islamic psychology, Ummah Wellness supports healing of the Qalb, regulation of the Nafs, and balance of the Ruh, integrating faith with emotional and behavioral well being of fellow Muslims</p>
+                    <div class="hero-buttons">
+                        <button class="cta-button" id="heroBookBtn">Schedule Consultation</button>
+                        <button class="secondary-button" id="learnMoreBtn">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-logo">
+                    <img src="/UW_Logo.png" alt="Ummah Wellness" class="hero-logo-img">
                 </div>
             </div>
         </div>
@@ -74,7 +63,6 @@ function renderApp() {
                     </div>
                     <h3>Individual Therapy</h3>
                     <p>One-on-one sessions focused on your personal growth, mental health challenges, and spiritual well-being.</p>
-                    <span class="service-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -82,7 +70,6 @@ function renderApp() {
                     </div>
                     <h3>Couples Counseling</h3>
                     <p>Strengthen your relationship through improved communication and understanding within Islamic marital principles.</p>
-                    <span class="service-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -90,7 +77,6 @@ function renderApp() {
                     </div>
                     <h3>Family Therapy</h3>
                     <p>Address family dynamics and conflicts while nurturing stronger bonds and healthier relationships.</p>
-                    <span class="service-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
         </div>
@@ -130,41 +116,18 @@ function renderApp() {
                         </div>
                     </div>
                 </div>
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <h3 id="calendarTitle">${monthNames[state.currentMonth]} ${state.currentYear}</h3>
-                        <div class="calendar-nav">
-                            <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
-                            <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="calendar-weekdays">
-                        <div>Sun</div>
-                        <div>Mon</div>
-                        <div>Tue</div>
-                        <div>Wed</div>
-                        <div>Thu</div>
-                        <div>Fri</div>
-                        <div>Sat</div>
-                    </div>
-                    <div class="calendar-days" id="calendarDays">
-                        ${generateCalendarDays()}
-                    </div>
-                    <div class="time-slots">
-                        <h4>Available Time Slots</h4>
-                        <div class="slots-container" id="timeSlots">
-                            ${timeSlots.map(time => `
-                                <div class="time-slot ${state.selectedTime === time ? 'selected' : ''}" data-time="${time}">
-                                    ${time}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
+                <div class="form-container">
                     <div class="booking-form">
-                        <h4>Your Information</h4>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" placeholder="Enter your full name">
+                        <h4>Request a Consultation</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" placeholder="Enter your first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Enter your last name">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address</label>
@@ -178,12 +141,16 @@ function renderApp() {
                             <label for="service">Service Type</label>
                             <select id="service">
                                 <option value="">Select a service</option>
-                                <option value="individual">Individual Therapy</option>
-                                <option value="couples">Couples Counseling</option>
-                                <option value="family">Family Therapy</option>
+                                <option value="Individual Therapy">Individual Therapy</option>
+                                <option value="Couples Counseling">Couples Counseling</option>
+                                <option value="Family Therapy">Family Therapy</option>
                             </select>
                         </div>
-                        <button class="cta-button" id="submitBooking" style="width: 100%;">Confirm Booking</button>
+                        <div class="form-group">
+                            <label for="message">Message (Optional)</label>
+                            <textarea id="message" rows="4" placeholder="Tell us briefly about what you're looking for help with..."></textarea>
+                        </div>
+                        <button class="cta-button" id="submitBooking" style="width: 100%;">Send Email</button>
                     </div>
                 </div>
             </div>
@@ -197,37 +164,28 @@ function renderApp() {
                 <div class="footer-column">
                     <h3>Ummah Wellness</h3>
                     <p style="color: rgba(255,255,255,0.8); margin-bottom: 20px;">Professional therapy services for the Muslim community. Healing through understanding.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#services">Our Services</a></li>
-                        <li><a href="#about">About Us</a></li>
                         <li><a href="#booking">Book Session</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a>Individual Therapy</a></li>
-                        <li><a>Couples Counseling</a></li>
-                        <li><a>Family Therapy</a></li>
-                        <li><a>Group Sessions</a></li>
+                    <ul class="footer-links footer-links-static">
+                        <li><span>Individual Therapy</span></li>
+                        <li><span>Couples Counseling</span></li>
+                        <li><span>Family Therapy</span></li>
+                        <li><span>Group Sessions</span></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul class="footer-links">
-                        <li><a><i class="fas fa-envelope" style="margin-right: 10px;"></i>info@ummahwellness.com</a></li>
-                        <li><a><i class="fas fa-phone" style="margin-right: 10px;"></i>(555) 123-4567</a></li>
-                        <li><a><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>123 Wellness St, City</a></li>
+                        <li><a href="mailto:ummahwellness1@gmail.com" class="email-link"><i class="fas fa-envelope"></i><span>ummahwellness1@gmail.com</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -241,8 +199,8 @@ function renderApp() {
     <div class="modal" id="successModal">
         <div class="modal-content">
             <span class="modal-close" id="modalClose">&times;</span>
-            <h3>Booking Confirmed!</h3>
-            <p id="modalMessage">Thank you for scheduling your appointment. We'll send you a confirmation email shortly.</p>
+            <h3>Request Sent!</h3>
+            <p id="modalMessage">Thank you for reaching out. We'll get back to you shortly.</p>
             <button class="cta-button" id="modalCloseBtn">Close</button>
         </div>
     </div>
@@ -251,85 +209,14 @@ function renderApp() {
     attachEventListeners();
 }
 
-// Generate calendar days
-function generateCalendarDays() {
-    const firstDay = new Date(state.currentYear, state.currentMonth, 1).getDay();
-    const daysInMonth = new Date(state.currentYear, state.currentMonth + 1, 0).getDate();
-    const today = new Date();
-    
-    let html = '';
-    
-    // Empty cells for days before the first of the month
-    for (let i = 0; i < firstDay; i++) {
-        html += '<div></div>';
-    }
-    
-    // Generate days
-    for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(state.currentYear, state.currentMonth, day);
-        const isSelected = state.selectedDate && 
-            state.selectedDate.getDate() === day && 
-            state.selectedDate.getMonth() === state.currentMonth &&
-            state.selectedDate.getFullYear() === state.currentYear;
-        const isPast = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        const isAvailable = !isPast && day % 3 !== 0; // Sample availability logic
-        
-        let className = '';
-        if (isSelected) className = 'selected';
-        else if (isAvailable && !isPast) className = 'available';
-        
-        html += `<div class="${className}" data-day="${day}" ${isPast ? 'style="opacity: 0.3; cursor: not-allowed;"' : ''}>${day}</div>`;
-    }
-    
-    return html;
-}
-
 // Attach event listeners
 function attachEventListeners() {
     // Mobile menu toggle
     const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.getElementById('navLinks');
-    
+
     mobileMenu?.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-    });
-
-    // Calendar navigation
-    document.getElementById('prevMonth')?.addEventListener('click', () => {
-        state.currentMonth--;
-        if (state.currentMonth < 0) {
-            state.currentMonth = 11;
-            state.currentYear--;
-        }
-        updateCalendar();
-    });
-
-    document.getElementById('nextMonth')?.addEventListener('click', () => {
-        state.currentMonth++;
-        if (state.currentMonth > 11) {
-            state.currentMonth = 0;
-            state.currentYear++;
-        }
-        updateCalendar();
-    });
-
-    // Calendar day selection
-    document.getElementById('calendarDays')?.addEventListener('click', (e) => {
-        const day = e.target.dataset.day;
-        if (day && !e.target.style.opacity) {
-            state.selectedDate = new Date(state.currentYear, state.currentMonth, parseInt(day));
-            updateCalendar();
-        }
-    });
-
-    // Time slot selection
-    document.getElementById('timeSlots')?.addEventListener('click', (e) => {
-        const timeSlot = e.target.closest('.time-slot');
-        if (timeSlot) {
-            state.selectedTime = timeSlot.dataset.time;
-            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
-            timeSlot.classList.add('selected');
-        }
     });
 
     // Book now buttons
@@ -374,69 +261,66 @@ function attachEventListeners() {
     });
 }
 
-// Update calendar display
-function updateCalendar() {
-    const calendarTitle = document.getElementById('calendarTitle');
-    const calendarDays = document.getElementById('calendarDays');
-    
-    if (calendarTitle) {
-        calendarTitle.textContent = `${monthNames[state.currentMonth]} ${state.currentYear}`;
-    }
-    if (calendarDays) {
-        calendarDays.innerHTML = generateCalendarDays();
-    }
-}
-
 // Handle booking submission
 function handleBookingSubmit() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
     const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value.trim();
 
-    if (!name || !email || !phone || !service) {
-        alert('Please fill in all fields');
+    // Validation
+    if (!firstName || !lastName || !email || !phone || !service) {
+        alert('Please fill in all required fields');
         return;
     }
 
-    if (!state.selectedDate) {
-        alert('Please select a date');
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
         return;
     }
 
-    if (!state.selectedTime) {
-        alert('Please select a time slot');
-        return;
-    }
+    // Compose email
+    const subject = encodeURIComponent(`Consultation Request from ${firstName} ${lastName}`);
+    const body = encodeURIComponent(
+        `New consultation request from Ummah Wellness website:
+
+Name: ${firstName} ${lastName}
+Email: ${email}
+Phone: ${phone}
+Service: ${service}
+
+Message:
+${message || 'No message provided'}
+
+---
+This request was submitted via the Ummah Wellness website.`
+    );
+
+    // Open email client
+    window.location.href = `mailto:ummahwellness1@gmail.com?subject=${subject}&body=${body}`;
 
     // Show success modal
     const modal = document.getElementById('successModal');
-    const message = document.getElementById('modalMessage');
-    
-    const formattedDate = state.selectedDate.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    });
-    
-    message.innerHTML = `
-        Thank you, <strong>${name}</strong>! Your appointment has been scheduled for:<br><br>
-        <strong>${formattedDate} at ${state.selectedTime}</strong><br><br>
-        A confirmation email will be sent to <strong>${email}</strong>.
+    const modalMessage = document.getElementById('modalMessage');
+
+    modalMessage.innerHTML = `
+        Thank you, <strong>${firstName}</strong>! Your email client should open with your request.<br><br>
+        If it doesn't open automatically, please email us directly at <strong>ummahwellness1@gmail.com</strong>
     `;
-    
+
     modal.style.display = 'flex';
 
     // Reset form
-    document.getElementById('name').value = '';
+    document.getElementById('firstName').value = '';
+    document.getElementById('lastName').value = '';
     document.getElementById('email').value = '';
     document.getElementById('phone').value = '';
     document.getElementById('service').value = '';
-    state.selectedDate = null;
-    state.selectedTime = null;
-    updateCalendar();
-    document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+    document.getElementById('message').value = '';
 }
 
 // Initialize the app

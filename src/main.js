@@ -185,7 +185,7 @@ function renderApp() {
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul class="footer-links">
-                        <li><a href="mailto:ummahwellness1@gmail.com" class="email-link"><i class="fas fa-envelope"></i><span>ummahwellness1@gmail.com</span></a></li>
+                        <li><a href="mailto:info@ummahwellness.com" class="email-link"><i class="fas fa-envelope"></i><span>info@ummahwellness.com</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -330,7 +330,7 @@ ${message || 'No additional message provided'}
 
     } catch (error) {
         console.error('EmailJS Error:', error);
-        alert('Sorry, there was an error sending your request. Please try again or email us directly at ummahwellness1@gmail.com');
+        alert('Sorry, there was an error sending your request. Please try again or email us directly at info@ummahwellness.com');
     } finally {
         // Re-enable button
         submitBtn.disabled = false;

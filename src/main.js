@@ -82,6 +82,63 @@ function renderApp() {
         </div>
     </section>
 
+    <!-- Therapists Section -->
+    <section class="section" id="therapists" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Therapists</h2>
+                <p>Compassionate professionals dedicated to your healing journey, combining clinical expertise with Islamic values.</p>
+            </div>
+            
+            <div class="therapists-grid">
+                <!-- Therapist 1: Ayesha -->
+                <div class="therapist-card">
+                    <div class="therapist-img-container">
+                        <img src="/ayesha.jpg" alt="Ayesha" class="therapist-img">
+                    </div>
+                    <div class="therapist-info">
+                        <h3>Ayesha</h3>
+                        <span class="therapist-title">MSW, RSW</span>
+                        <div class="therapist-bio">
+                            <p>Ayesha demonstrates high regard for those who have the courage to seek help and views them as the expert of their own experiences. She provides a listening ear and a guiding voice that embodies the prophetic manner and builds trust.</p>
+                            <p>She holds a Master's in Social Work from the University of Windsor and brings over a decade of experience. Her care continuum is client-centred, emotion-focused, strengths-based, anti-oppressive, anti-racist and trauma-informed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Therapist 2: Sara Ghannam -->
+                <div class="therapist-card">
+                    <div class="therapist-img-container">
+                        <img src="/sara.jpg" alt="Sara Ghannam" class="therapist-img">
+                    </div>
+                    <div class="therapist-info">
+                        <h3>Sara Ghannam</h3>
+                        <span class="therapist-title">MSW, BSW, RSW</span>
+                        <div class="therapist-bio">
+                            <p>Sara is a registered social worker and mental health professional with experience in child protection and settlement fields. She provides a supportive, confidential, and non-judgmental space for individuals seeking help.</p>
+                            <p>Her approach is client-centred and grounded in evidence-based practice. She works collaboratively with clients to explore challenges, develop insight, and build practical coping strategies.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Therapist 3: Ammara Sial -->
+                <div class="therapist-card">
+                    <div class="therapist-img-container">
+                        <img src="/ammara.jpg" alt="Ammara Sial" class="therapist-img">
+                    </div>
+                    <div class="therapist-info">
+                        <h3>Ammara Sial</h3>
+                        <span class="therapist-title">CEO & Founder, Mental Health Professional</span>
+                        <div class="therapist-bio">
+                            <p>Ammara is the CEO and founder of Ummah Wellness with over 15 years of experience across schools, hospitals, and community settings. She holds multiple graduate degrees in Psychology, Disability Studies, and Applied Behavioural Sciences.</p>
+                            <p>She has specialized expertise in child and adolescent mental health, trauma-informed care & inclusive education. Her work focuses on practical, culturally responsive strategies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Booking Section -->
     <section class="section booking" id="booking">
         <div class="container">

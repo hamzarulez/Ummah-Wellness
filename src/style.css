@@ -436,6 +436,94 @@ header {
     gap: 12px;
 }
 
+/* Therapists Section */
+.therapists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.therapist-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.therapist-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.therapist-img-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.therapist-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.therapist-card:hover .therapist-img {
+    transform: scale(1.05);
+}
+
+.therapist-info {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.therapist-info h3 {
+    color: var(--primary);
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.therapist-title {
+    display: block;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.therapist-bio {
+    color: var(--light-text);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.therapist-bio p {
+    margin-bottom: 15px;
+}
+
+.therapist-bio p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .therapists-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .therapist-img-container {
+        height: 250px;
+    }
+}
+
 /* Booking Section */
 .booking {
     background-color: var(--light-gray);

@@ -123,8 +123,8 @@ function renderApp() {
 
                 <!-- Therapist 3: Ammara Sial -->
                 <div class="therapist-card">
-                    <div class="therapist-img-container">
-                        <img src="/ammara.jpg" alt="Ammara Sial" class="therapist-img">
+                    <div class="therapist-img-container text-placeholder">
+                        <div class="placeholder-name">Ammara Sial</div>
                     </div>
                     <div class="therapist-info">
                         <h3>Ammara Sial</h3>

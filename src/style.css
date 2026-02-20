@@ -484,6 +484,24 @@ header {
     flex-direction: column;
 }
 
+.therapist-img-container.text-placeholder {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.placeholder-name {
+    color: var(--white);
+    font-size: 36px;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
 .therapist-info h3 {
     color: var(--primary);
     font-size: 24px;
